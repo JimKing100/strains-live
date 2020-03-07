@@ -7,5 +7,7 @@ data - The data directory
 
 - cannabis.csv - The Cannabis Strains dataset posted on Kaggle by LiamLarsen consisting of 2,350 unique cannabis strains.
 
-tf_knn.ipynb - The Colab notebook containing the TF-IDF and k-NN code.
+model - model directory
+
+- tf_knn.ipynb - The Jupyter notebook containing the TF-IDF and k-NN code.
 
