@@ -70,7 +70,7 @@ layout = html.Div([
 
 @app.callback(
     [Output('effects-content', 'children'),
-     Output('flavor-content', 'children'),
+     Output('flavors-content', 'children'),
      Output('prediction-content', 'children')],
     [Input('effects', 'value'),
      Input('flavors', 'value')
@@ -81,8 +81,7 @@ layout = html.Div([
 #     Input('flavor2', 'value'),
 #     Input('flavor3', 'value')
     ])
-def predict(effects, flavors):#,effects2, effects3, effects4, effects5
-            #flavor1, flavor2, flavor3):
+def predict(effects, flavors):
            
     nn = NearestNeighbors(n_neighbors=5, algorithm='ball_tree')
     nn.fit(dtm)
@@ -92,4 +91,4 @@ def predict(effects, flavors):#,effects2, effects3, effects4, effects5
 
     results = [strains['Strain'][results[1][0][i]] for i in range(5)]
 
-    return effects, flavors, results
+    return effects[0], flavors[0], results
