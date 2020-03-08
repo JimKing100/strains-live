@@ -78,7 +78,7 @@ layout = html.Div([
 def predict(effects, flavors):
     nn = NearestNeighbors(n_neighbors=5, algorithm='ball_tree')
     nn.fit(dtm)
-    effects_str = effects[0]+','+effects[1]+','+effects[2]+','+effects[3]+','effects[4]
+    effects_str = effects[0]+','+effects[1]+','+effects[2]+','+effects[3]+','+effects[4]
     flavors_str = flavors[0]+','+flavors[1]+','+flavors[2]
     strain_str = effects_str + ',' + flavors_str
     ideal_strain = ['Creative,Energetic,Tingly,Euphoric,Relaxed,Earthy,Sweet,Citrus']
