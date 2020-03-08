@@ -42,6 +42,8 @@ layout = html.Div([
         Use the controls below to select your effects and flavors.
     """),
 
+    html.Div(id='effects-content', style={'fontWeight': 'bold'}),
+    html.Div(id='flavors-content', style={'fontWeight': 'bold'}),
     html.Div(id='prediction-content', style={'fontWeight': 'bold'}),
 
     html.Div([
@@ -67,7 +69,9 @@ layout = html.Div([
 ])
 
 @app.callback(
-    Output('prediction-content', 'children'),
+    [Output('effects-content', 'children'),
+     Output('flavor-content', 'children'),
+     Output('prediction-content', 'children')],
     [Input('effects', 'value'),
      Input('flavors', 'value')
 #     Input('effects3', 'value'),
@@ -88,4 +92,4 @@ def predict(effects, flavors):#,effects2, effects3, effects4, effects5
 
     results = [strains['Strain'][results[1][0][i]] for i in range(5)]
 
-    return results
+    return effects, flavors, results
