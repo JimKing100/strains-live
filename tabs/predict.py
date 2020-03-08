@@ -40,11 +40,7 @@ layout = html.Div([
     dcc.Markdown("""
         ### Predict
         Use the controls below to select your effects and flavors.
-    """),
-
-    html.Div(id='effects-content', style={'fontWeight': 'bold'}),
-    html.Div(id='flavors-content', style={'fontWeight': 'bold'}),
-    html.Div(id='prediction-content', style={'fontWeight': 'bold'}),
+    """),   
 
     html.Div([
         dcc.Markdown('###### Effects - Select 5'),
@@ -65,6 +61,10 @@ layout = html.Div([
             multi=True
         ),
     ], style=style),
+           
+    html.Div(id='effects-content', style={'fontWeight': 'bold'}),
+    html.Div(id='flavors-content', style={'fontWeight': 'bold'}),
+    html.Div(id='prediction-content', style={'fontWeight': 'bold'}),
   
 ])
 
@@ -74,21 +74,17 @@ layout = html.Div([
      Output('prediction-content', 'children')],
     [Input('effects', 'value'),
      Input('flavors', 'value')
-#     Input('effects3', 'value'),
-#     Input('effects4', 'value'),
-#     Input('effects5', 'value'),
-#     Input('flavor1', 'value'),
-#     Input('flavor2', 'value'),
-#     Input('flavor3', 'value')
     ])
 def predict(effects, flavors):
-           
     nn = NearestNeighbors(n_neighbors=5, algorithm='ball_tree')
     nn.fit(dtm)
+    effects_str = effects[0]+','+effects[1]+','+effects[2]+','+effects[3]+','effects[4]
+    flavors_str = flavors[0]+','+flavors[1]+','+flavors[2]
+    strain_str = effects_str + ',' + flavors_str
     ideal_strain = ['Creative,Energetic,Tingly,Euphoric,Relaxed,Earthy,Sweet,Citrus']
     new = tf.transform(ideal_strain)
     results = nn.kneighbors(new.todense())
 
     results = [strains['Strain'][results[1][0][i]] for i in range(5)]
 
-    return effects[0], flavors[0], results
+    return effects[0], flavors[0], strain_str #results
