@@ -45,11 +45,21 @@ layout = html.Div([
     html.Div(id='prediction-content', style={'fontWeight': 'bold'}),
 
     html.Div([
-        dcc.Markdown('###### Effects'),
+        dcc.Markdown('###### Effects - Select 5'),
         dcc.Dropdown(
             id='effects',
             options=[{'label': effect, 'value': effect} for effect in effects],
-            value=effects[0],
+            value=[],
+            multi=True
+        ),
+    ], style=style),
+           
+    html.Div([
+        dcc.Markdown('###### Flavors - Select 3'),
+        dcc.Dropdown(
+            id='flavors',
+            options=[{'label': flavor, 'value': flavor} for flavor in flavors],
+            value=[],
             multi=True
         ),
     ], style=style),
@@ -58,8 +68,8 @@ layout = html.Div([
 
 @app.callback(
     Output('prediction-content', 'children'),
-    [Input('effects', 'value')
-#     Input('effects2', 'value'),
+    [Input('effects', 'value'),
+     Input('flavors', 'value')
 #     Input('effects3', 'value'),
 #     Input('effects4', 'value'),
 #     Input('effects5', 'value'),
@@ -67,7 +77,7 @@ layout = html.Div([
 #     Input('flavor2', 'value'),
 #     Input('flavor3', 'value')
     ])
-def predict(effects):#,effects2, effects3, effects4, effects5
+def predict(effects, flavors):#,effects2, effects3, effects4, effects5
             #flavor1, flavor2, flavor3):
            
     nn = NearestNeighbors(n_neighbors=5, algorithm='ball_tree')
@@ -76,6 +86,6 @@ def predict(effects):#,effects2, effects3, effects4, effects5
     new = tf.transform(ideal_strain)
     results = nn.kneighbors(new.todense())
 
-    results = [strains['Strain'][results[1][0][i]] for i in range(5)]
+    results = [strains['Strain'][results[1][0][i]] for i in range(5)], 
 
-    return results
+    return results, effects, flavors
