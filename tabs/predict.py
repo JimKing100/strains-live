@@ -9,8 +9,8 @@ import pickle
 
 from sklearn.neighbors import NearestNeighbors
 
-pickle.load(dtm, open('/model/dtm.pkl', 'rb'))
-pickle.load(tf, open('/model/tf.pkl', 'rb'))
+dtm = pickle.load(open('/model/dtm.pkl', 'rb'))
+tf = pickle.load(open('/model/tf.pkl', 'rb'))
 
 cities = ['Belvedere',
           'Bolinas',
