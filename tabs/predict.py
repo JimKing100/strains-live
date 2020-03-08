@@ -62,16 +62,21 @@ layout = html.Div([
         ),
     ], style=style),
            
-    html.Div(id='effects-content', style={'fontWeight': 'bold'}),
-    html.Div(id='flavors-content', style={'fontWeight': 'bold'}),
-    html.Div(id='prediction-content', style={'fontWeight': 'bold'}),
+    html.Div(id='results1-content', style={'fontWeight': 'bold'}),
+    html.Div(id='results2-content', style={'fontWeight': 'bold'}),
+    html.Div(id='results3-content', style={'fontWeight': 'bold'}),
+    html.Div(id='results4-content', style={'fontWeight': 'bold'}),
+    html.Div(id='results5-content', style={'fontWeight': 'bold'}),
   
 ])
 
 @app.callback(
-    [Output('effects-content', 'children'),
-     Output('flavors-content', 'children'),
-     Output('prediction-content', 'children')],
+    [Output('results1-content', 'children'),
+     Output('results2-content', 'children'),
+     Output('results3-content', 'children'),
+     Output('results4-content', 'children'),
+     Output('results5-content', 'children')  
+    ],
     [Input('effects', 'value'),
      Input('flavors', 'value')
     ])
@@ -81,10 +86,10 @@ def predict(effects, flavors):
     effects_str = effects[0]+','+effects[1]+','+effects[2]+','+effects[3]+','+effects[4]
     flavors_str = flavors[0]+','+flavors[1]+','+flavors[2]
     strain_str = effects_str + ',' + flavors_str
-    ideal_strain = ['Creative,Energetic,Tingly,Euphoric,Relaxed,Earthy,Sweet,Citrus']
+    ideal_strain = [strain_str]
     new = tf.transform(ideal_strain)
     results = nn.kneighbors(new.todense())
 
     results = [strains['Strain'][results[1][0][i]] for i in range(5)]
 
-    return effects[0], flavors[0], strain_str #results
+    return results[0], results[1], results[2], results[3], results[4]
