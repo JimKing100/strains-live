@@ -12,30 +12,20 @@ from sklearn.neighbors import NearestNeighbors
 dtm = pickle.load(open('model/dtm.pkl', 'rb'))
 tf = pickle.load(open('model/tf.pkl', 'rb'))
 
-cities = ['Belvedere',
-          'Bolinas',
-          'Corte Madera',
-          'Dillon Beach',
-          'Fairfax',
-          'Greenbrae',
-          'Inverness',
-          'Kentfield',
-          'Larkspur',
-          'Marshall',
-          'Mill Valley',
-          'Muir Beach',
-          'Nicasio',
-          'Novato',
-          'Point Reyes',
-          'Ross',
-          'San Anselmo',
-          'San Geronimo Valley',
-          'San Rafael',
-          'Sausalito',
-          'Stinson Beach',
-          'Tiburon',
-          'Tomales',
-          'Other'
+effects = ['Creative',
+           'Energetic',
+           'Tingly',
+           'Euphoric',
+           'Relaxed',
+           'Aroused',
+           'Happy',
+           'Uplifted',
+           'Hungry',
+           'Talkative',
+           'Giggly',
+           'Focused',
+           'Sleepy',
+           'Dry'
           ]
 
 style = {'padding': '1.5em'}
@@ -43,18 +33,17 @@ style = {'padding': '1.5em'}
 layout = html.Div([
     dcc.Markdown("""
         ### Predict
-        Use the controls below to update your predicted offer, based on city,
-        beds, baths, number of offers, and list price.
+        Use the controls below to select your effects and flavors.
     """),
 
     html.Div(id='prediction-content', style={'fontWeight': 'bold'}),
 
     html.Div([
-        dcc.Markdown('###### Area'),
+        dcc.Markdown('###### Effects 1'),
         dcc.Dropdown(
-            id='area',
-            options=[{'label': city, 'value': city} for city in cities],
-            value=cities[10]
+            id='effects1',
+            options=[{'label': effect, 'value': effect} for effect in effects],
+            value=effects[0]
         ),
     ], style=style),
   
