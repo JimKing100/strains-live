@@ -45,11 +45,12 @@ layout = html.Div([
     html.Div(id='prediction-content', style={'fontWeight': 'bold'}),
 
     html.Div([
-        dcc.Markdown('###### Effects 1'),
+        dcc.Markdown('###### Effects'),
         dcc.Dropdown(
-            id='effects1',
+            id='effects',
             options=[{'label': effect, 'value': effect} for effect in effects],
-            value=effects[0]
+            value=effects[0],
+            multi=True
         ),
     ], style=style),
   
@@ -57,7 +58,7 @@ layout = html.Div([
 
 @app.callback(
     Output('prediction-content', 'children'),
-    [Input('effects1', 'value')
+    [Input('effects', 'value')
 #     Input('effects2', 'value'),
 #     Input('effects3', 'value'),
 #     Input('effects4', 'value'),
@@ -66,7 +67,7 @@ layout = html.Div([
 #     Input('flavor2', 'value'),
 #     Input('flavor3', 'value')
     ])
-def predict(effects1):#,effects2, effects3, effects4, effects5
+def predict(effects):#,effects2, effects3, effects4, effects5
             #flavor1, flavor2, flavor3):
            
     nn = NearestNeighbors(n_neighbors=5, algorithm='ball_tree')
