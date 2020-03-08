@@ -19,20 +19,19 @@ strains = strains.reset_index(drop=True)
 
 strains['Criteria'] = strains['Effects'] + ',' + strains['Flavor']
 
-effects = ['Creative',
-           'Energetic',
-           'Tingly',
-           'Euphoric',
-           'Relaxed',
-           'Aroused',
-           'Happy',
-           'Uplifted',
-           'Hungry',
-           'Talkative',
-           'Giggly',
-           'Focused',
-           'Sleepy',
-           'Dry'
+effects = ['Creative', 'Energetic', 'Tingly', 'Euphoric', 'Relaxed',
+           'Aroused', 'Happy', 'Uplifted', 'Hungry', 'Talkative',
+           'Giggly', 'Focused', 'Sleepy', 'Dry'
+          ]
+
+flavors = ['Earthy', 'Sweet', 'Citrus', 'Flowery', 'Violet', 'Diesel',
+           'Spicy/Herbal', 'Sage', 'Woody', 'Apricot', 'Grapefruit', 'Orange',
+           'Pungent', 'Grape', 'Pine', 'Skunk', 'Berry', 'Pepper',
+           'Menthol', 'Blue', 'Cheese', 'Chemical', 'Mango', 'Lemon', 'Peach',
+           'Vanilla', 'Nutty', 'Chestnut', 'Tea', 'Tobacco', 'Tropical',
+           'Strawberry', 'Blueberry', 'Mint', 'Apple', 'Honey', 'Lavender',
+           'Lime', 'Coffee', 'Ammonia', 'Minty', 'Tree', 'Fruit', 'Butter',
+           'Pineapple', 'Tar', 'Rose', 'Plum', 'Pear'
           ]
 
 style = {'padding': '1.5em'}
