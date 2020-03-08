@@ -38,8 +38,8 @@ style = {'padding': '1.5em'}
 
 layout = html.Div([
     dcc.Markdown("""
-        ### Predict
-        Use the controls below to select your effects and flavors.
+        ### Recommend
+        Use the controls below to select 5 effects and 3 flavors.
     """),   
 
     html.Div([
@@ -61,6 +61,11 @@ layout = html.Div([
             multi=True
         ),
     ], style=style),
+           
+    dcc.Markdown("""
+        ### Recommend
+        The five recommended strains based on your selected effects and flavors are:
+    """),   
            
     html.Div(id='results1-content', style={'fontWeight': 'bold'}),
     html.Div(id='results2-content', style={'fontWeight': 'bold'}),
@@ -90,6 +95,13 @@ def predict(effects, flavors):
     new = tf.transform(ideal_strain)
     results = nn.kneighbors(new.todense())
 
-    results = [strains['Strain'][results[1][0][i]] for i in range(5)]
+    rec_strain = [strains['Strain'][results[1][0][i]] for i in range(5)]
+    rec_criteria = [strains['Criteria'][results[1][0][i]] for i in range(5)]
+    
+    recommend1 = rec_strain[0] + ' - ' + rec_criteria[0]
+    recommend2 = rec_strain[1] + ' - ' + rec_criteria[1]
+    recommend3 = rec_strain[2] + ' - ' + rec_criteria[2]
+    recommend4 = rec_strain[3] + ' - ' + rec_criteria[3]
+    recommend5 = rec_strain[4] + ' - ' + rec_criteria[4]
 
-    return results[0], results[1], results[2], results[3], results[4]
+    return recommend1, recommend2, recommend3, recommend4, recommend5
