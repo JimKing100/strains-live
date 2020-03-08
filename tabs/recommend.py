@@ -38,7 +38,7 @@ style = {'padding': '1.5em'}
 
 layout = html.Div([
     dcc.Markdown("""
-        ### Recommend
+        ### Select Effects and Flavors
         Use the controls below to select 5 effects and 3 flavors.
     """),   
 
@@ -63,7 +63,7 @@ layout = html.Div([
     ], style=style),
            
     dcc.Markdown("""
-        ### Recommend
+        ### Recommendations
         The five recommended strains based on your selected effects and flavors are:
     """),   
            
