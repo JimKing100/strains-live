@@ -86,6 +86,6 @@ def predict(effects, flavors):#,effects2, effects3, effects4, effects5
     new = tf.transform(ideal_strain)
     results = nn.kneighbors(new.todense())
 
-    results = [strains['Strain'][results[1][0][i]] for i in range(5)], 
+    results = [strains['Strain'][results[1][0][i]] for i in range(5)]
 
-    return results, effects, flavors
+    return results
