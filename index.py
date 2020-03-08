@@ -8,7 +8,7 @@ from tabs import intro, recommend, about
 style = {'maxWidth': '960px', 'margin': 'auto'}
 
 app.layout = html.Div([
-    dcc.Markdown('# Multiple Offer Calculator'),
+    dcc.Markdown('## Marijuana Recommendation System Using TF-IDF and k-NN'),
     dcc.Tabs(id='tabs', value='tab-intro', children=[
         dcc.Tab(label='Intro', value='tab-intro'),
         dcc.Tab(label='Recommend', value='tab-recommend'),
